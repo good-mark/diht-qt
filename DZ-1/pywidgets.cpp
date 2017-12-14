@@ -4,7 +4,7 @@ extern "C" {
 #include <string>
 #include "widgets.h"
 
-extern "C" PyObject* Application_New_python(PyObject* module)
+extern "C" PyObject* Application_New_python(PyObject* module, PyObject* args)
 {
     return PyLong_FromLong(long(Application_New()));
 }
@@ -100,7 +100,7 @@ extern "C" PyObject* Widget_SetVisible_python(PyObject* module, PyObject* args)
 extern "C" PyObject* Application_Exec_python(PyObject* module, PyObject* args)
 {
     Application* arg1 = (Application*) PyTuple_GetItem(args, 0);
-    return PyLong_FromLong(arg1->app->exec());
+    return PyLong_FromLong(arg1->ptr->exec());
 }
 
 PyMODINIT_FUNC PyInit__pywidgets() {
@@ -132,4 +132,4 @@ PyMODINIT_FUNC PyInit__pywidgets() {
 
     PyObject* mod = PyModule_Create(&modDef);
     return mod;
-
+}

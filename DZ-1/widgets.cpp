@@ -18,7 +18,9 @@ Application::Application()
 {
     app_class_name = "Application";
     int arg = 0;
-    ptr = new QApplication(arg, nullptr);
+    char* fakestr = new char[1];
+    fake = &fakestr;
+    ptr = new QApplication(arg, this->fake);
 }
 
 Layout::Layout(Widget* widget)
@@ -117,7 +119,7 @@ void Widget_SetSize(Widget* widget, int x, int y)
     widget->ptr->resize(x, y);
 }
 
-void Widget_SetVisible(Widget* widget, const QFlag& flag)
+void Widget_SetVisible(Widget* widget, bool flag)
 {
     widget->ptr->setVisible(flag);
 }
@@ -133,7 +135,7 @@ void Object_Delete(Object* object)
     {
         Widget* widget = (Widget*) object;
         std::vector<Widget*>::iterator it = widget->children.begin();
-        for (it; it != widget->children.end(); ++it)
+        for (; it != widget->children.end(); ++it)
         {
             Object_Delete(*it);
         }

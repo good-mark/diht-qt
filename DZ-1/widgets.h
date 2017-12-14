@@ -31,6 +31,7 @@ struct Application : public Object
 {
 public:
     QApplication* ptr;
+    char** fake;
     Application();
 };
 
@@ -102,7 +103,7 @@ void Widget_SetWindowTitle(Widget* widget, const QString& txt);
 
 void Widget_SetSize(Widget* widget, int x, int y);
 
-void Widget_SetVisible(Widget* widget, const QFlag& flag);
+void Widget_SetVisible(Widget* widget, bool flag);
 
 int Application_Exec(Application* app);
 
