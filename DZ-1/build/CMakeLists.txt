@@ -29,7 +29,7 @@ add_executable(
 
 python_add_module(
     _pywidgets
-    _pywidgets.cpp
+    pywidgets.cpp
     widgets.cpp
     ${MOC_SRC}
     )
